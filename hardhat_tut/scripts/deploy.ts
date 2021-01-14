@@ -6,16 +6,25 @@ async function main() {
 
   // If we had constructor arguments, they would be passed into deploy()
   // let contract = await factory.deploy();
-  let contract = await factory.deploy(1000000);
+  let dappToken = await factory.deploy(1000000);
 
   // The address the Contract WILL have once mined
-  console.log(contract.address);
+  console.log(dappToken.address);
 
   // The transaction that was sent to the network to deploy the Contract
-  console.log(contract.deployTransaction.hash);
+  console.log(dappToken.deployTransaction.hash);
 
   // The contract is NOT deployed yet; we must wait until it is mined
-  await contract.deployed();
+  await dappToken.deployed();
+
+  const factoryDappTokenSale = await ethers.getContractFactory("DappTokenSale");
+  var tokenPrice = 1000000000000000; // in wei
+  let dappTokenSale = await factoryDappTokenSale.deploy(
+    dappToken.address,
+    tokenPrice
+  );
+  console.log(dappTokenSale.address);
+  console.log(dappTokenSale.deployTransaction.hash);
 }
 
 main()

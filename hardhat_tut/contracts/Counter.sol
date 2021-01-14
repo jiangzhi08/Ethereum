@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity >=0.8.0 <0.9.0;
+pragma solidity >=0.7.0 <0.9.0;
 // pragma solidity ^0.7.3;
 import "hardhat/console.sol";
 
@@ -7,7 +7,7 @@ contract Counter {
     uint256 count = 0;
     event CountedTo(uint256 number);
 
-    function getCount() public  view returns (uint256) {
+    function getCount() public view returns (uint256) {
         return count;
     }
 
